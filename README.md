@@ -1,5 +1,3 @@
-Here's a template for the `README.md` file for your project:
-
 ```markdown
 Newsletter Pro
 
