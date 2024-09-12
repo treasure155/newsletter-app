@@ -8,11 +8,11 @@ const cookieParser = require('cookie-parser');
 const path = require('path');
 const ejs = require('ejs');
 require('dotenv').config();
-const multer = require('multer'); // For file uploads
-const XLSX = require('xlsx'); // For Excel file handling
-const csvParser = require('csv-parser'); // For parsing CSV files
-const { Parser } = require('json2csv'); // For exporting CSV
-const PDFDocument = require('pdfkit'); // For generating PDFs
+const multer = require('multer'); 
+const XLSX = require('xlsx'); 
+const csvParser = require('csv-parser'); 
+const { Parser } = require('json2csv'); 
+const PDFDocument = require('pdfkit'); 
 const fs = require('fs');
 
 
@@ -41,7 +41,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
 
-// Multer configuration for handling file uploads
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, './uploads/');
@@ -278,7 +277,6 @@ app.get('/admin/logout', (req, res) => {
 });
 
 
-// Import subscribers from Excel/CSV
 app.post('/admin/import-subscribers', upload.single('file'), async (req, res) => {
     const file = req.file;
     if (!file) {
@@ -305,7 +303,6 @@ app.post('/admin/import-subscribers', upload.single('file'), async (req, res) =>
     }
 });
 
-// Export subscribers to Excel
 app.get('/admin/export-excel', async (req, res) => {
     try {
         const subscribers = await Subscriber.find();
@@ -319,24 +316,20 @@ app.get('/admin/export-excel', async (req, res) => {
         const workbook = XLSX.utils.book_new();
         XLSX.utils.book_append_sheet(workbook, worksheet, 'Subscribers');
 
-        // Define the export directory and file path
         const exportDir = path.join(__dirname, 'exports');
         const exportPath = path.join(exportDir, 'subscribers.xlsx');
 
-        // Ensure the 'exports' directory exists
         if (!fs.existsSync(exportDir)) {
             fs.mkdirSync(exportDir, { recursive: true });
         }
 
-        // Write the Excel file
         XLSX.writeFile(workbook, exportPath);
 
-        // Send the file for download and delete it afterward
         res.download(exportPath, 'subscribers.xlsx', (err) => {
             if (err) {
                 console.error('Error downloading file:', err);
             }
-            fs.unlinkSync(exportPath); // Clean up the file after download
+            fs.unlinkSync(exportPath); 
         });
     } catch (error) {
         console.error('Error exporting subscribers:', error);
@@ -344,7 +337,6 @@ app.get('/admin/export-excel', async (req, res) => {
     }
 });
 
-// Export subscribers to CSV
 app.get('/admin/export-csv', async (req, res) => {
     try {
         const subscribers = await Subscriber.find();
@@ -358,7 +350,7 @@ app.get('/admin/export-csv', async (req, res) => {
             if (err) {
                 console.error('Error downloading file:', err);
             }
-            fs.unlinkSync(exportPath); // Clean up the file after download
+            fs.unlinkSync(exportPath);
         });
     } catch (error) {
         console.error('Error exporting subscribers:', error);
@@ -372,18 +364,15 @@ app.get('/admin/export-pdf', async (req, res) => {
         const exportDir = path.join(__dirname, 'exports');
         const exportPath = path.join(exportDir, 'subscribers.pdf');
 
-        // Ensure the 'exports' directory exists
         if (!fs.existsSync(exportDir)) {
             fs.mkdirSync(exportDir, { recursive: true });
         }
 
         const doc = new PDFDocument();
 
-        // Pipe the document to a file
         const writeStream = fs.createWriteStream(exportPath);
         doc.pipe(writeStream);
 
-        // Write subscribers data into the PDF
         doc.fontSize(16).text('Subscribers List', { align: 'center' });
         doc.moveDown();
         subscribers.forEach(sub => {
@@ -393,17 +382,15 @@ app.get('/admin/export-pdf', async (req, res) => {
 
         doc.end();
 
-        // Wait until the PDF is fully written before sending the response
         writeStream.on('finish', () => {
             res.download(exportPath, 'subscribers.pdf', (err) => {
                 if (err) {
                     console.error('Error downloading PDF:', err);
                 }
-                fs.unlinkSync(exportPath); // Clean up the file after download
+                fs.unlinkSync(exportPath);
             });
         });
 
-        // Handle stream error
         writeStream.on('error', (err) => {
             console.error('Error writing PDF:', err);
             res.status(500).send('Error exporting to PDF.');
