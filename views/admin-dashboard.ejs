@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="shortcut icon" href="/newslettericon.png" type="image/x-icon">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">Newsletter Pro</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/send-newsletter">Send Newsletter</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/logout">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container mt-5">
+    <h1 class="text-center">Admin Dashboard</h1>
+    <h3 class="text-center">Subscriber Management</h3>
+
+    <!-- Table of Subscribers -->
+    <table class="table table-bordered mt-4">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% subscribers.forEach(subscriber => { %>
+          <tr>
+            <td><%= subscriber.name %></td>
+            <td><%= subscriber.email %></td>
+            <td><%= subscriber.phone %></td>
+            <td>
+              <form action="/admin/delete-subscriber" method="POST" style="display: inline;">
+                <input type="hidden" name="email" value="<%= subscriber.email %>">
+                <button type="submit" class="btn btn-danger">Delete</button>
+              </form>
+            </td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+
+    <!-- Add Subscriber Form -->
+    <h3 class="text-center mt-5">Add Subscriber</h3>
+    <form action="/admin/add-subscriber" method="POST" class="mt-4">
+      <div class="mb-3">
+        <label for="name" class="form-label">Subscriber Name</label>
+        <input type="text" id="name" name="name" class="form-control" required placeholder="Enter name">
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Subscriber Email</label>
+        <input type="email" id="email" name="email" class="form-control" required placeholder="Enter email">
+      </div>
+      <div class="mb-3">
+        <label for="phone" class="form-label">Subscriber Phone</label>
+        <input type="text" id="phone" name="phone" class="form-control" required placeholder="Enter phone number">
+      </div>
+      <button type="submit" class="btn btn-primary">Add Subscriber</button>
+    </form>
+
+    <!-- Import Subscribers -->
+    <h3 class="text-center mt-5">Import Subscribers</h3>
+    <form action="/admin/import-subscribers" method="POST" enctype="multipart/form-data" class="mt-4">
+      <div class="mb-3">
+        <label for="file" class="form-label">Upload Excel or CSV File</label>
+        <input type="file" id="file" name="file" class="form-control" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Import Subscribers</button>
+    </form>
+
+    <!-- Export Subscribers -->
+    <h3 class="text-center mt-5">Export Subscribers</h3>
+    <div class="row">
+     <div class="col-sm-4 p-5"><a href="/admin/export-excel" class="btn btn-success">Export as Excel</a></div> 
+      <div class="col-sm-4 p-5"><a href="/admin/export-csv" class="btn btn-info">Export as CSV</a></div>
+      <div class="col-sm-4 p-5"><a href="/admin/export-pdf" class="btn btn-danger">Export as PDF</a></div>
+    </div>
+  </div>
+
+  <!-- Footer Section -->
+  <footer style="background-color: #f9f9f9; padding: 20px; text-align: center; color: #333;">
+    <div style="max-width: 600px; margin: auto;">
+      <p style="font-size: 14px; margin: 0;">
+        &copy; 2024 TechAlpha Hub. All Rights Reserved.
+      </p>
+      <p style="font-size: 12px; margin: 10px 0;">
+        You are receiving this email because you subscribed to the TechAlpha Newsletter. 
+        If you no longer wish to receive these emails, you can <a href="<unsubscribe_link>" style="color: #007bff; text-decoration: none;">unsubscribe here</a>.
+      </p>
+      <p style="font-size: 12px; margin: 10px 0;">
+        <a href="" style="color: #007bff; text-decoration: none;">Visit our website</a> | 
+        <a href="<contact_us_link>" style="color: #007bff; text-decoration: none;">Contact Us</a>
+      </p>
+      <p style="font-size: 12px; margin: 10px 0;">
+        TechAlpha Hub, 139 Etinan-Uyo Road, Etinan, Akwa Ibom State, Nigeria
+      </p>
+    </div>
+  </footer>
+
+  <script src="/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Newsletter - Home</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="shortcut icon" href="/newslettericon.png" type="image/x-icon">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">TechAlpha Newsletter Pro</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin">Login</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Centered Subscription Form -->
+  <div class="center-container">
+    <div class="subscription-box">
+      <h1 class="text-center">Subscribe to Our Newsletter</h1>
+      <p class="text-center">Stay updated with the latest news and exclusive offers.</p>
+      <form action="/subscribe" method="POST" class="mt-4">
+        <div class="mb-3">
+          <input type="text" name="name" class="form-control" required placeholder="Enter your name">
+        </div>
+        <div class="mb-3">
+          <input type="email" name="email" class="form-control" required placeholder="Enter your email">
+        </div>
+        <div class="mb-3">
+          <input type="text" name="phone" class="form-control" required placeholder="Enter your phone number">
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Subscribe</button>
+      </form>
+    </div>
+  </div>
+
+<!-- Footer Section -->
+<footer style="background-color: #f9f9f9; padding: 20px; text-align: center; color: #333;">
+    <div style="max-width: 1200px; margin: auto;">
+      <p style="font-size: 14px; margin: 0;">
+        &copy; 2024 TechAlpha Hub. All Rights Reserved.
+      </p>
+      <p style="font-size: 12px; margin: 10px 0;">
+        You are receiving this email because you subscribed to the TechAlpha Newsletter. 
+        If you no longer wish to receive these emails, you can <a href="<unsubscribe_link>" style="color: #007bff; text-decoration: none;">unsubscribe here</a>.
+      </p>
+      <p style="font-size: 12px; margin: 10px 0;">
+        <a href="<website_link>" style="color: #007bff; text-decoration: none;">Visit our website</a> | 
+        <a href="<contact_us_link>" style="color: #007bff; text-decoration: none;">Contact Us</a>
+      </p>
+      <p style="font-size: 12px; margin: 10px 0;">
+        TechAlpha Hub, 139 Etinan-Uyo Road, Etinan, Akwa Ibom State, Nigeria
+      </p>
+    </div>
+  </footer>
+  
+
+  <script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

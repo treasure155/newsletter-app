@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Send Newsletter</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="shortcut icon" href="/newslettericon.png" type="image/x-icon">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">Newsletter Pro</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/admin/dashboard">Admin Dashboard</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/admin/logout">Logout</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+  <div class="container mt-5">
+    <h1 class="text-center">Send Newsletter</h1>
+    <form action="/send-newsletter" method="POST" class="mt-4">
+      <div class="mb-3">
+        <label for="subject" class="form-label">Subject</label>
+        <input type="text" id="subject" name="subject" class="form-control" required placeholder="Subject">
+      </div>
+      <div class="mb-3">
+        <label for="message" class="form-label">Message</label>
+        <textarea id="message" name="message" class="form-control" rows="5" required placeholder="Message"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Send</button>
+    </form>
+
+    <form  action="/send-template2" method="POST" class="mt-4">
+        <button type="submit" class="btn btn-secondary w-100 mb-5">Send Special Announcement</button>
+    </form>
+
+  </div>
+
+<!-- Footer Section -->
+<footer style="background-color: #f9f9f9; padding: 20px; text-align: center; color: #333;">
+    <div style="max-width: 1000px; margin: auto;">
+      <p style="font-size: 14px; margin: 0;">
+        &copy; 2024 TechAlpha Hub. All Rights Reserved.
+      </p>
+      <p style="font-size: 12px; margin: 10px 0;">
+        You are receiving this email because you subscribed to the TechAlpha Newsletter. 
+        If you no longer wish to receive these emails, you can <a href="<unsubscribe_link>" style="color: #007bff; text-decoration: none;">unsubscribe here</a>.
+      </p>
+      <p style="font-size: 12px; margin: 10px 0;">
+        <a href="<website_link>" style="color: #007bff; text-decoration: none;">Visit our website</a> | 
+        <a href="<contact_us_link>" style="color: #007bff; text-decoration: none;">Contact Us</a>
+      </p>
+      <p style="font-size: 12px; margin: 10px 0;">
+        TechAlpha Hub, 139 Etinan-Uyo Road, Etinan, Akwa Ibom State, Nigeria
+      </p>
+    </div>
+  </footer>
+  
+
+  <script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

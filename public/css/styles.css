@@ -1,0 +1,35 @@
+
+    body, html {
+      height: 100%;
+      margin: 0;
+      background-color: rgba(243, 246, 250, 0.621);
+    }
+    .center-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh; /* Full viewport height */
+    }
+    .subscription-box {
+      background-color: #f8f9fa;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      max-width: 800px;
+      width: 100%;
+    }
+    .navbar-brand {
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+    .navbar-nav .nav-link {
+      margin-left: 15px;
+      font-size: 1.1rem;
+    }
+    .navbar {
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .table{
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
