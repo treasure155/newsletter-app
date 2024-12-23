@@ -402,6 +402,18 @@ app.get('/admin/export-pdf', async (req, res) => {
     }
 });
 
+// POST route to handle unsubscribe logic
+app.post('/unsubscribe', async (req, res) => {
+  const { email } = req.body;
+  try {
+      await Subscriber.deleteOne({ email });
+      res.send('You have successfully unsubscribed from our newsletter.');
+  } catch (error) {
+      console.error('Error unsubscribing:', error);
+      res.status(500).send('Error unsubscribing. Please try again.');
+  }
+});
+
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
